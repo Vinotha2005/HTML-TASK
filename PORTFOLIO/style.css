@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #e5e7eb;
+  line-height: 1.8;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+
+.hero-text h3 {
+  margin: 10px 0;
+  font-weight: 400;
+}
+
+.hero-buttons a {
+  display: inline-block;
+  margin: 15px;
+  padding: 12px 30px;
+  border-radius: 30px;
+  background: #020617;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.hero-buttons a:hover {
+  background: #38bdf8;
+  color: #020617;
+}
+
+/* SECTIONS */
+.section {
+  padding: 70px 15%;
+}
+
+.section h2 {
+  color: #60a5fa;
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #020617;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+/* PROJECTS */
+.project {
+  background: #020617;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  transition: transform 0.3s;
+}
+
+.project:hover {
+  transform: translateY(-8px);
+}
+
+.project-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 22px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #020617;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.project-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #818cf8, #38bdf8);
+}
+
+/* LIST */
+ul {
+  margin-left: 20px;
+}
+
+/* FOOTER */
+footer {
+  background: #020617;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 2.3rem;
+  }
+  .section {
+    padding: 50px 8%;
+  }
+}

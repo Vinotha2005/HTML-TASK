@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp Style Chat UI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: #e5ddd5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .chat-container {
+        width: 400px;
+        height: 600px;
+        background: #f0f0f0;
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    /* Header */
+    .chat-header {
+        background: #075e54;
+        color: white;
+        padding: 15px 20px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .chat-header img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    /* Messages */
+    .chat-messages {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow-y: auto;
+        background: #e5ddd5;
+    }
+
+    .message {
+        max-width: 70%;
+        padding: 10px 15px;
+        border-radius: 20px;
+        position: relative;
+        font-size: 0.95rem;
+        word-wrap: break-word;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .message.user {
+        background: #dcf8c6;
+        align-self: flex-end;
+        border-bottom-right-radius: 0;
+    }
+
+    .message.bot {
+        background: white;
+        align-self: flex-start;
+        border-bottom-left-radius: 0;
+    }
+
+    .message .time {
+        font-size: 0.7rem;
+        color: #555;
+        position: absolute;
+        bottom: 2px;
+        right: 10px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Input */
+    .chat-input {
+        display: flex;
+        padding: 10px 15px;
+        border-top: 1px solid #ccc;
+        background: #f0f0f0;
+    }
+
+    .chat-input input {
+        flex: 1;
+        padding: 10px 15px;
+        border-radius: 50px;
+        border: 1px solid #ccc;
+        outline: none;
+        font-size: 0.95rem;
+    }
+
+    .chat-input button {
+        background: #075e54;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        margin-left: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.3s;
+    }
+
+    .chat-input button:hover {
+        background: #064e48;
+    }
+
+    /* Scrollbar */
+    .chat-messages::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.2);
+        border-radius: 3px;
+    }
+</style>
+</head>
+<body>
+
+<div class="chat-container">
+    <!-- Header -->
+    <div class="chat-header">
+        <img src="https://i.pravatar.cc/40" alt="Avatar">
+        Chat with Alex
+    </div>
+
+    <!-- Messages -->
+    <div class="chat-messages" id="chatMessages">
+        <div class="message bot">
+            Hi! How are you doing today?
+            <span class="time">10:00 AM</span>
+        </div>
+        <div class="message user">
+            I'm good, thanks! How about you?
+            <span class="time">10:01 AM</span>
+        </div>
+    </div>
+
+    <!-- Input -->
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type a message...">
+        <button onclick="sendMessage()">&#9658;</button>
+    </div>
+</div>
+
+<script>
+    const chatMessages = document.getElementById('chatMessages');
+    const userInput = document.getElementById('userInput');
+
+    function sendMessage() {
+        const text = userInput.value.trim();
+        if(text === "") return;
+
+        // Add user message
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('message', 'user');
+        const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        userMessage.innerHTML = `${text} <span class="time">${time}</span>`;
+        chatMessages.appendChild(userMessage);
+
+        userInput.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Simulate bot reply
+        setTimeout(() => {
+            const botMessage = document.createElement('div');
+            botMessage.classList.add('message', 'bot');
+            botMessage.innerHTML = `You said: ${text} <span class="time">${time}</span>`;
+            chatMessages.appendChild(botMessage);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 800);
+    }
+
+    userInput.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter') sendMessage();
+    });
+</script>
+
+</body>
+</html>
+
